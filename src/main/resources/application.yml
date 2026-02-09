@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: testing
+
+config:
+  url:
+    lookup: https://api.spimex.com/otc/lookup-tables/1
