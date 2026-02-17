@@ -12,17 +12,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest(classes = Main.class)
 @ExtendWith(SpringExtension.class)
 @AutoConfigureRestTestClient
-public class IntegrationTest {
+public class MoscowIntegrationTest {
 
     @Autowired
     RestTestClient restTestClient;
 
     @Test
     public void test() {
-        restTestClient.get().uri("/bpmn/initialize?regionNumbers=59")
-
-                .exchange().expectStatus().isOk();
-
-        assertTrue(true);
+        restTestClient.get().uri("/bpmn/initialize?regionNumbers=77").exchange()
+                .expectStatus().isOk()
+                .expectBody().json("6543");
     }
 }

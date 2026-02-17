@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * record model for input data
+ */
 @Getter
 @Setter
 @Builder

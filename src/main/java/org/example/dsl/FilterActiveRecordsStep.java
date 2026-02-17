@@ -8,18 +8,19 @@ import org.example.model.json.LookupTable1Record;
 import java.util.List;
 import java.util.function.Predicate;
 
+/** dsl process step, filters active records, strategy is moved to predicate in order to allow customization */
 @Slf4j
 @Getter
 @RequiredArgsConstructor
 public class FilterActiveRecordsStep {
     private final List<LookupTable1Record> records;
 
-    public FilterExcludingIndividualEntrepreneursStep filterActiveRecords(Predicate<LookupTable1Record> filter) {
+    public FilterResidentsStep filterActiveRecords(Predicate<LookupTable1Record> filter) {
         List<LookupTable1Record> result = records.stream()
                 .filter(filter)
                 .toList();
 
-//        log.info(result.toString());
-        return new FilterExcludingIndividualEntrepreneursStep(result);
+        log.info(result.size() + " records found");
+        return new FilterResidentsStep(result);
     }
 }

@@ -1,5 +1,8 @@
 package org.example.service.lookup;
 
+import java.util.List;
+
 public interface LookupService {
-    int count(int[] regionNumbers);
+    /** count elements via bpmn process */
+    int count(List<String> regionNumbers);
 }

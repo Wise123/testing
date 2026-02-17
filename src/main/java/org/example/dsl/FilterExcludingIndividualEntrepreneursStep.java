@@ -8,6 +8,7 @@ import org.example.model.json.LookupTable1Record;
 import java.util.List;
 import java.util.function.Predicate;
 
+/** dsl process step, filters individual enterpreneurs, strategy is moved to predicate in order to allow customization */
 @Slf4j
 @Getter
 @RequiredArgsConstructor
@@ -19,7 +20,7 @@ public class FilterExcludingIndividualEntrepreneursStep {
                 .filter(filter)
                 .toList();
 
-//        log.info(result.toString());
+        log.info(result.size() + " records found");
         return new FilterRegionStep(result);
     }
 }

@@ -23,8 +23,7 @@ class FilterRegionStepTest {
 
     @Test
     public void filterRegion() {
-
-        var result = step.filterRegion(Utils.getRegionFilterPredicate(new int[]{1}));
+        CountStep result = step.filterRegion(Utils.getRegionFilterPredicate(List.of("01")));
 
         assertEquals(1, result.getRecords().size());
     }

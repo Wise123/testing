@@ -4,11 +4,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.dsl.GetDataStep;
-import org.example.model.json.LookupTable1Record;
 import org.example.utils.Utils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
 
 @Slf4j
 @Service
@@ -21,12 +22,15 @@ public class LookupServiceBasicImpl implements LookupService{
     private final ObjectMapper objectMapper;
 
     @Override
-    public int count(int[] regionNumbers) {
+    public int count(List<String> regionNumbers) {
+
+
         return new GetDataStep(lookupUrl, restTemplate, objectMapper)
                 .getData()
                 .filterActiveRecords(Utils::isRecordActive)
+                .filterResidents(Utils::isResident)
                 .filterExcludingIndividualEntrepreneurs(Utils::isRecordIsNotIndividualEnterpreneur)
-                .filterRegion(Utils.getRegionFilterPredicate(regionNumbers))
+                .filterRegion(Utils.getRegionFilterPredicate(regionNumbers.stream().toList()))
                 .count();
     }
 }

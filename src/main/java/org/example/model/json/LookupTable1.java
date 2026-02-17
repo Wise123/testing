@@ -9,6 +9,9 @@ import lombok.ToString;
 
 import java.util.List;
 
+/**
+ * top level model for input data
+ */
 @Getter
 @Setter
 @Builder

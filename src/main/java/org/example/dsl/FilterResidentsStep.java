@@ -8,19 +8,19 @@ import org.example.model.json.LookupTable1Record;
 import java.util.List;
 import java.util.function.Predicate;
 
-/** dsl process step, filters records by region, strategy is moved to predicate in order to allow customization */
+/** dsl process step, filters resedential records, strategy is moved to predicate in order to allow customization */
 @Slf4j
 @Getter
 @RequiredArgsConstructor
-public class FilterRegionStep {
+public class FilterResidentsStep {
     private final List<LookupTable1Record> records;
 
-    public CountStep filterRegion(Predicate<LookupTable1Record> filter){
+    public FilterExcludingIndividualEntrepreneursStep filterResidents(Predicate<LookupTable1Record> filter) {
         List<LookupTable1Record> result = records.stream()
                 .filter(filter)
                 .toList();
 
         log.info(result.size() + " records found");
-        return new CountStep(result);
+        return new FilterExcludingIndividualEntrepreneursStep(result);
     }
 }
